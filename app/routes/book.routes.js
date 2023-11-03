@@ -2,17 +2,19 @@ const express = require("express");
 const router = express.Router();
 
 const { validate } = require("../middlewares/validate.middleware");
-const { bookSchema } = require("../validations/book.schema");
+const { bookSchema } = require("../validations/books.schema");
 
 const {
   getAllbooksController,
   addbookController,
   updatebookController,
   deletebookController,
-} = require("../controllers/book.controller");
+  getbyidbookController,
+} = require("../controllers/books.controller");
 
 // READ
 router.get("/", getAllbooksController);
+router.get("/:id", getbyidbookController);
 
 // CREATE
 router.post("/", validate(bookSchema), addbookController);

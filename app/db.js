@@ -14,6 +14,13 @@ const addbook = ({ title, year }) => {
   books.push(m);
   return m;
 };
+const getbyidbook = ({ id }) => {
+  const idx = books.findIndex((m) => m.id == id);
+  if (idx === -1) {
+    return null;
+  }
+  return books[idx];
+};
 
 const updatebook = ({ id, payload }) => {
   const idx = books.findIndex((m) => m.id == id);
@@ -43,4 +50,5 @@ module.exports = {
   addbook,
   updatebook,
   deletebook,
+  getbyidbook,
 };

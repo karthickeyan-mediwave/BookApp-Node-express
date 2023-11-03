@@ -1,4 +1,10 @@
-const { getAllbooks, addbook, updatebook, deletebook } = require("../db");
+const {
+  getAllbooks,
+  addbook,
+  updatebook,
+  deletebook,
+  getbyidbook,
+} = require("../db");
 
 const getAllbooksController = (req, res) => {
   const books = getAllbooks();
@@ -7,6 +13,17 @@ const getAllbooksController = (req, res) => {
 
 const addbookController = (req, res) => {
   const book = addbook(req.xop);
+  res.send(book);
+};
+const getbyidbookController = (req, res, next) => {
+  const book = getbyidbook({ id: req.params.id });
+  console.log(book);
+  if (!book) {
+    return next({
+      status: 400,
+      message: "book not found",
+    });
+  }
   res.send(book);
 };
 
@@ -37,4 +54,5 @@ module.exports = {
   addbookController,
   updatebookController,
   deletebookController,
+  getbyidbookController,
 };
