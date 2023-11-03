@@ -1,46 +1,46 @@
 const { v4: uuidv4 } = require("uuid");
 
-const movies = [];
+const books = [];
 
-const getAllMovies = () => movies;
+const getAllbooks = () => books;
 
-const addMovie = ({ title, year }) => {
+const addbook = ({ title, year }) => {
   const id = uuidv4();
   const m = {
     id,
     title,
     year,
   };
-  movies.push(m);
+  books.push(m);
   return m;
 };
 
-const updateMovie = ({ id, payload }) => {
-  const idx = movies.findIndex((m) => m.id == id);
+const updatebook = ({ id, payload }) => {
+  const idx = books.findIndex((m) => m.id == id);
   if (idx === -1) {
     return null;
   }
 
-  movies[idx]["title"] = payload["title"];
-  movies[idx]["year"] = payload["year"];
+  books[idx]["title"] = payload["title"];
+  books[idx]["year"] = payload["year"];
 
-  return movies[idx];
+  return books[idx];
 };
 
-const deleteMovie = ({ id }) => {
-  const idx = movies.findIndex((m) => m.id == id);
+const deletebook = ({ id }) => {
+  const idx = books.findIndex((m) => m.id == id);
   if (idx === -1) {
     return null;
   }
 
-  const movie = movies[idx];
-  movies.splice(idx, 1);
-  return movie;
+  const book = books[idx];
+  books.splice(idx, 1);
+  return book;
 };
 
 module.exports = {
-  getAllMovies,
-  addMovie,
-  updateMovie,
-  deleteMovie,
+  getAllbooks,
+  addbook,
+  updatebook,
+  deletebook,
 };
